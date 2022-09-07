@@ -9,7 +9,9 @@ public class Test {
 
         int a = 4;
         for (int i = 0; i < num.length; i++) {
-            int b = num[i];
+            if (num[i] == 0) {
+                continue;
+            }
             int c = a / b;
             print(c);
         }
