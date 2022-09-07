@@ -15,5 +15,9 @@ public class Test {
             int c = a / b;
             print(c);
         }
+
+        String str = "123";
+        str = "abc";
+        Integer i = new Integer(str);
     }
 }
