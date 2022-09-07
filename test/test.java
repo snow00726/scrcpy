@@ -17,7 +17,6 @@ public class Test {
         }
 
         String str = "123";
-        str = "abc";
         Integer i = new Integer(str);
     }
 }
