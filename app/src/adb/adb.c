@@ -654,7 +654,7 @@ sc_adb_getprop(struct sc_intr *intr, const char *serial, const char *prop,
     }
 
     if (r == -1) {
-        return NULL;
+        return false;
     }
 
     assert((size_t) r < sizeof(buf));
@@ -689,7 +689,7 @@ sc_adb_get_device_ip(struct sc_intr *intr, const char *serial, unsigned flags) {
     }
 
     if (r == -1) {
-        return NULL;
+        return false;
     }
 
     assert((size_t) r < sizeof(buf));
