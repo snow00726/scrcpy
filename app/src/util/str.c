@@ -240,7 +240,7 @@ sc_str_wrap_lines(const char *input, unsigned columns, unsigned indent) {
 
     APPEND_INDENT();
 
-    // The last separator encountered, it must be inserted only conditionally,
+    // The last separator encountered, it must be inserted only conditionnally,
     // depending on the next token
     char pending = 0;
 
