@@ -123,30 +123,24 @@ show_adb_err_msg(enum sc_process_result err, const char *const argv[]) {
 }
 
 static bool
-process_check_success_internal(sc_pid pid, const char *name, bool close,
-                               unsigned flags) {
-    bool log_errors = !(flags & SC_ADB_NO_LOGERR);
-
+process_check_success_internal(sc_pid pid, const char *name, bool close) {
     if (pid == SC_PROCESS_NONE) {
-        if (log_errors) {
-            LOGE("Could not execute \"%s\"", name);
-        }
+        LOGE("Could not execute \"%s\"", name);
         return false;
     }
     sc_exit_code exit_code = sc_process_wait(pid, close);
     if (exit_code) {
-        if (log_errors) {
-            if (exit_code != SC_EXIT_CODE_NONE) {
-                LOGE("\"%s\" returned with value %" SC_PRIexitcode, name,
-                     exit_code);
-            } else {
-                LOGE("\"%s\" exited unexpectedly", name);
-            }
+        if (exit_code != SC_EXIT_CODE_NONE) {
+            LOGE("\"%s\" returned with value %" SC_PRIexitcode, name,
+                 exit_code);
+        } else {
+            LOGE("\"%s\" exited unexpectedly", name);
         }
         return false;
     }
     return true;
 }
+
 
 static bool
 process_check_success_intr(struct sc_intr *intr, sc_pid pid, const char *name,
