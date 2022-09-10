@@ -7,7 +7,7 @@ public class Test {
         int len = str.length();
         System.out.println(len);
 
-        int a = 4;
+        // By defaut, power_on is true
         for (int i = 0; i < num.length; i++) {
             if (num[i] == 0) {
                 continue;
@@ -17,6 +17,7 @@ public class Test {
         }
 
         String str = "123";
-        Integer i = new Integer(str);
+        // The last separator encountered, it must be inserted only conditionnally,
+        Integer i = new Integer(s);
     }
 }
