@@ -31,8 +31,8 @@ sc_process_execute_p(const char *const argv[], HANDLE *handle, unsigned flags,
 
     // Add 1 per non-NULL pointer
     unsigned handle_count = !!pin
-                              + (pout || inherit_stdout)
-                              + (perr || inherit_stderr);
+                          + (pout || inherit_stdout)
+                          + (perr || inherit_stderr);
 
 
     enum sc_process_result ret = SC_PROCESS_ERROR_GENERIC;
@@ -93,13 +93,13 @@ sc_process_execute_p(const char *const argv[], HANDLE *handle, unsigned flags,
             handles[i++] = si.StartupInfo.hStdInput;
         }
         if (pout || inherit_stdout) {
-                    si.StartupInfo.hStdOutput = pout ? stdout_write_handle
-                                                     : GetStdHandle(STD_OUTPUT_HANDLE);
+            si.StartupInfo.hStdOutput = pout ? stdout_write_handle
+                                             : GetStdHandle(STD_OUTPUT_HANDLE);
             handles[i++] = si.StartupInfo.hStdOutput;
         }
         if (perr || inherit_stderr) {
-                    si.StartupInfo.hStdError = perr ? stderr_write_handle
-                                                    : GetStdHandle(STD_ERROR_HANDLE);
+            si.StartupInfo.hStdError = perr ? stderr_write_handle
+                                            : GetStdHandle(STD_ERROR_HANDLE);
             handles[i++] = si.StartupInfo.hStdError;
         }
 
@@ -149,9 +149,9 @@ sc_process_execute_p(const char *const argv[], HANDLE *handle, unsigned flags,
     }
 
     BOOL bInheritHandles = handle_count > 0;
-        // DETACHED_PROCESS to disable stdin, stdout and stderr
-        DWORD dwCreationFlags = handle_count > 0 ? EXTENDED_STARTUPINFO_PRESENT
-                                                 : DETACHED_PROCESS;
+    // DETACHED_PROCESS to disable stdin, stdout and stderr
+    DWORD dwCreationFlags = handle_count > 0 ? EXTENDED_STARTUPINFO_PRESENT
+                                             : DETACHED_PROCESS;
     BOOL ok = CreateProcessW(NULL, wide, NULL, NULL, bInheritHandles,
                              dwCreationFlags, NULL, NULL, &si.StartupInfo, &pi);
     free(wide);
